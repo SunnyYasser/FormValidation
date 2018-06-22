@@ -29,24 +29,8 @@
 	
 	<link href="assets/css/meds.css" rel="stylesheet" />
 	<link href="assets/css/custom.css" rel="stylesheet" />
-	<script type="text/javascript">
-		function validateform(){  
-				var name=document.myform.name.value;  
-				var password=document.myform.password.value;
-				var txtLoanAmount=document.myform.txtLoanAmount.value;
-				var txtLoanTenure=document.myform.txtLoanTenure.value;
-				var txtCurrentEMI=document.myform.txtCurrentEMI.value;
-				txtFirstName  
-				  
-				if (name==null || name==""){  
-				  alert("Name can't be blank");  
-				  return false;  
-				}else if(password.length<6){  
-				  alert("Password must be at least 6 characters long.");  
-				  return false;  
-				  }  
-}  
-	</script>
+	
+		
 </head>
 
 
@@ -67,7 +51,7 @@
 		            <!--      container        -->
 		            <div class="wizard-container">
 		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
-		                    <form name='myform' action="" method="">
+		                    <form name='myform' action="" method="" onsubmit="return validateForm()">
 
 		                    	<div class="wizard-header">
 		                        	<h3 class="wizard-title">
@@ -123,7 +107,7 @@
 													</span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">Purpose Of Loan</label>
-														<select class="form-control" for="loan_purpose" >
+														<select class="form-control" name="loanPurpose" >
 															<option disabled="" selected=""></option>
 															<option value="LH21">Marriage</option>
 															<option value="LH22">Medical Emergency</option>
@@ -148,10 +132,10 @@
 											</div>
 											<div class="wizard-footer">
 											<div class="pull-right verti">
-												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next' value='Confirm Loan Details' />
+												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next1' value='Confirm Loan Details' onsubmit="return valide_loan_details()" />
 											</div>
 											<div class="pull-right verti">
-												<a href="index.html" class='btn btn-fill btn-default btn-wd' name='next' value='CANCEL'>CANCEL</a>
+												<a href="index.html" class='btn btn-fill btn-default btn-wd' name='cancel' value='CANCEL'>CANCEL</a>
 											</div>
 											<div class="clearfix"></div>
 										</div>											
@@ -182,13 +166,13 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Date of Birth </label>
-														<input type="text" id="date" class="form-control">
+														<input type="text" id="date" class="form-control validate" name="DOB">
 														<span class="material-input"></span>
 													</div>
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Gender</label>
-			                                          	<select class="form-control">
+			                                          	<select class="form-control" name="gender">
 															<option disabled="" selected=""></option>
 															<option value="male">Male</option>
 															<option value="female">Female</option>															
@@ -200,7 +184,7 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">PAN Number</label>
-			                                          	<input name="pan" type="text" class="form-control">
+			                                          	<input name="txtPan" type="text" class="form-control">
 			                                        <span class="material-input"></span></div>
 													<div>
 														<h6><label class="control-label">Marital Status</label></h6>
@@ -218,7 +202,7 @@
 													<div class="form-group label-floating is-empty">
 													
 			                                          	<label class="control-label">Contact Number</label>
-			                                          	<input name="hpnumber" type="text" class="form-control">
+			                                          	<input name="txtNumber" type="text" class="form-control validate">
 			                                        <span class="material-input"></span></div>
 												</div>
 												<div class="input-group">
@@ -232,7 +216,7 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">Education</label>
-			                                          	<select class="form-control">
+			                                          	<select class="form-control" name="education">
 															<option disabled="" selected=""></option>
 															<option value="GRAD">Graduate</option>
 															<option value="PGRAD">Post Graduate</option>
@@ -245,7 +229,7 @@
 		                            </div>
 										<div class="wizard-footer">
 											<div class="pull-right verti">
-												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next' value='Confirm Personal Details' />
+												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next2' value='Confirm Personal Details' onsubmit="return validate_personal_details()" />
 											</div>
 											<div class="pull-right verti">
 												<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Back' style="display:block;"/>
@@ -264,7 +248,7 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Pin Code </label>
-			                                          	<input name="txtCPinCode" type="text" class="form-control">
+			                                          	<input name="txtPincode" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<div class="form-group label-floating is-empty">
@@ -288,7 +272,7 @@
 													</div>	
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">Residence Type</label>
-			                                          	<select class="form-control">
+			                                          	<select class="form-control" name="residence">
 															<option disabled="" selected=""></option>
 															<option value="rented">Rented</option>
 															<option value="owned">Owned</option>
@@ -313,12 +297,12 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Pin Code </label>
-			                                          	<input name="txtCPinCode" type="text" class="form-control">
+			                                          	<input name="ptxtPincode" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Address</label>
-			                                          	<input name="address" type="text" class="form-control">
+			                                          	<input name="paddress" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<span class="input-group-addon"></span>	
@@ -327,17 +311,17 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">City</label>
-			                                          	<input name="city" type="text" class="form-control">					
+			                                          	<input name="pcity" type="text" class="form-control">					
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">State</label>
-			                                          	<input name="state" type="text" class="form-control">
+			                                          	<input name="pstate" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">Residence Type</label>
-			                                          	<select class="form-control">
+			                                          	<select class="form-control" name="presidence">
 															<option disabled="" selected=""></option>
 															<option value="rented">Rented</option>
 															<option value="owned">Owned</option>
@@ -352,17 +336,17 @@
 		                                	</div>		                                	
 											<div class="col-sm-6">
 												
-												<div><h5>Company Address</h5></div>
-																									<div class="input-group">
+												<div><h5>Company Address</h5></div>																
+												<div class="input-group">
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Pin Code </label>
-			                                          	<input name="txtCPinCode" type="text" class="form-control">
+			                                          	<input name="ctxtPincode" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Address</label>
-			                                          	<input name="address" type="text" class="form-control">
+			                                          	<input name="caddress" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<span class="input-group-addon"></span>	
@@ -371,12 +355,12 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">City</label>
-			                                          	<input name="city" type="text" class="form-control">					
+			                                          	<input name="ccity" type="text" class="form-control">					
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">State</label>
-			                                          	<input name="state" type="text" class="form-control">
+			                                          	<input name="cstate" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>	
 																									
@@ -387,8 +371,8 @@
 		                                	</div>
 										</div>
 										<div class="wizard-footer">
-											<div class="pull-right verti">
-												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next' value='Confirm Address Details' />
+											<div class="pull-right vertical">
+												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next3' value='Confirm Address Details' onsubmit="return validate_address()" />
 											</div>
 											<div class="pull-right verti">
 												<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Back' style="display:block;"/>
@@ -424,11 +408,11 @@
 														<span class="input-group-addon"></span>
 														<div class="form-group label-floating is-empty">														
 															<label class="control-label">Current Work Experience</label>
-															<input name="txtCWorkEx" type="text" class="form-control">
+															<input name="txtWorkEx" type="text" class="form-control">
 														<span class="material-input"></span></div>
 														<div class="form-group label-floating is-empty">														
 															<label class="control-label">Total Work Experience</label>
-															<input name="hpnumber" type="text" class="form-control">
+															<input name="txtTotalWorkEx" type="text" class="form-control">
 														<span class="material-input"></span></div>
 													</div>																								
 												</div>	
@@ -436,7 +420,7 @@
 		                                </div>
 										<div class="wizard-footer">
 											<div class="pull-right verti">
-												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next' value='Confirm Employment Details' />
+												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next4' value='Confirm Employment Details' onsubmit="return validate_employment()" />
 											</div>
 											<div class="pull-right verti">
 												<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Back' style="display:block;"/>

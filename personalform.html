@@ -123,7 +123,7 @@
 													</span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Current EMI <i class="fa fa-rupee"></i></label>
-			                                          	<input name="txtCurrentEMI" type="text" class="form-control">
+			                                          	<input name="MonthlyObligation" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 												</div>
@@ -151,13 +151,19 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">First Name </label>
-			                                          	<input name="txtFirstName" type="text" class="form-control">
+			                                          	<input name="FName" type="text" class="form-control">
+														<span class="material-input"></span>
+													</div>
+													<span class="input-group-addon"></span>
+													<div class="form-group label-floating is-empty">
+			                                          	<label class="control-label">Middle Name </label>
+			                                          	<input name="MName" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Last Name </label>
-			                                          	<input name="txtLastName" type="text" class="form-control">
+			                                          	<input name="LName" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													
@@ -168,11 +174,15 @@
 			                                          	<label class="control-label">Date of Birth </label>
 														<input type="text" id="date" class="form-control validate" name="DOB">
 														<span class="material-input"></span>
+														<div class="form-group label-floating is-empty">
+															<label data-error="wrong" class="control-label">Personal Email</label>
+															<input name="PersonalEmailID" type="text"  class="form-control validate">
+														<span class="material-input"></span></div>
 													</div>
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Gender</label>
-			                                          	<select class="form-control" name="gender">
+			                                          	<select class="form-control" name="Gender">
 															<option disabled="" selected=""></option>
 															<option value="male">Male</option>
 															<option value="female">Female</option>															
@@ -184,10 +194,15 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">PAN Number</label>
-			                                          	<input name="txtPan" type="text" class="form-control">
+			                                          	<input name="PAN" type="text" class="form-control">
 			                                        <span class="material-input"></span></div>
+													<div class="form-group label-floating is-empty">
+			                                          	<label class="control-label">AADHAR Number</label>
+			                                          	<input name="AadhaarNumber" type="text" class="form-control">
+			                                        <span class="material-input"></span></div>
+													
 													<div>
-														<h6><label class="control-label">Marital Status</label></h6>
+														<h6><label for="MaritalStatus" class="control-label">Marital Status</label></h6>
 														<div class="switch">													
 															<label>Single<input type="checkbox" checked=""><span class="lever switch-col-green"></span>Married</label>
 														</div>
@@ -202,7 +217,12 @@
 													<div class="form-group label-floating is-empty">
 													
 			                                          	<label class="control-label">Contact Number</label>
-			                                          	<input name="txtNumber" type="text" class="form-control validate">
+			                                          	<input name="MobileNo" type="text" class="form-control validate">
+			                                        <span class="material-input"></span></div>
+			                                        <div class="form-group label-floating is-empty">
+													
+			                                          	<label class="control-label">Alternate Contact Number</label>
+			                                          	<input name="AlternateMobileNo" type="text" class="form-control validate">
 			                                        <span class="material-input"></span></div>
 												</div>
 												<div class="input-group">
@@ -216,7 +236,7 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">Education</label>
-			                                          	<select class="form-control" name="education">
+			                                          	<select class="form-control" name="Education">
 															<option disabled="" selected=""></option>
 															<option value="GRAD">Graduate</option>
 															<option value="PGRAD">Post Graduate</option>
@@ -248,12 +268,12 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Pin Code </label>
-			                                          	<input name="txtPincode" type="text" class="form-control">
+			                                          	<input name="CurrentPin" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Address</label>
-			                                          	<input name="address" type="text" class="form-control">
+			                                          	<input name="CurrentAddress1" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<span class="input-group-addon"></span>	
@@ -262,24 +282,31 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">City</label>
-			                                          	<input name="city" type="text" class="form-control">					
+			                                          	<input name="CurrentCity" type="text" class="form-control">					
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">State</label>
-			                                          	<input name="state" type="text" class="form-control">
+			                                          	<input name="CurrentState" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">Residence Type</label>
-			                                          	<select class="form-control" name="residence">
+			                                          	<select class="form-control" name="ResidenceType">
 															<option disabled="" selected=""></option>
 															<option value="rented">Rented</option>
 															<option value="owned">Owned</option>
 																											
 														</select>			
 														<span class="material-input"></span>
-													</div>														
+														<div class="form-group label-floating is-empty">
+			                                          	<label class="control-label">Residence Stability</label>
+			                                          	<input name="ResidenceStability" type="int" class="form-control">
+														<span class="material-input"></span>
+													</div>
+
+													</div>
+
 													<span class="input-group-addon"></span>												
 												</div>
 												<div class="input-group">
@@ -297,12 +324,12 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Pin Code </label>
-			                                          	<input name="ptxtPincode" type="text" class="form-control">
+			                                          	<input name="PermanentPin" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Address</label>
-			                                          	<input name="paddress" type="text" class="form-control">
+			                                          	<input name="PermanentAddress" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<span class="input-group-addon"></span>	
@@ -311,12 +338,12 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">City</label>
-			                                          	<input name="pcity" type="text" class="form-control">					
+			                                          	<input name="PermanentCity" type="text" class="form-control">					
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">State</label>
-			                                          	<input name="pstate" type="text" class="form-control">
+			                                          	<input name="PermanentState" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
@@ -398,7 +425,7 @@
 														<span class="material-input"></span></div>
 														<div class="form-group label-floating is-empty">
 															<label data-error="wrong" class="control-label">Official Email</label>
-															<input name="officeEmail" type="email"  class="form-control validate">
+															<input name="officeEmail" type="OfficialEmailID"  class="form-control validate">
 														<span class="material-input"></span></div>
 													</div>								
 												</div>	
@@ -408,11 +435,11 @@
 														<span class="input-group-addon"></span>
 														<div class="form-group label-floating is-empty">														
 															<label class="control-label">Current Work Experience</label>
-															<input name="txtWorkEx" type="text" class="form-control">
+															<input name="CurrentWorkExp" type="text" class="form-control">
 														<span class="material-input"></span></div>
 														<div class="form-group label-floating is-empty">														
 															<label class="control-label">Total Work Experience</label>
-															<input name="txtTotalWorkEx" type="text" class="form-control">
+															<input name="TotalWorkExp" type="text" class="form-control">
 														<span class="material-input"></span></div>
 													</div>																								
 												</div>	

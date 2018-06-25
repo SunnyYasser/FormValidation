@@ -12,30 +12,27 @@ $(document).ready(function(){
     $('[rel="tooltip"]').tooltip();
 
     // Code for the Validator
-    /* var $validator = $('.wizard-card form').validate({
+     var $validator = $('.wizard-card form').validate({
 		  rules: {
-		    fullname: {
+		    txtLoanAmount: {
 		      required: true,
-		      minlength: 3
 		    },
-		    nric: {
+		    txtLoanTenure: {
 		      required: true,
-		      minlength: 3
 		    },
-			hpnumber: {
-		      required: true,
-		      minlength: 3
-		    },
-		    email: {
-		      required: true,
-		      minlength: 3,
-		    }
+            loanPurpose: {
+              required: true,
+            },
+            MonthlyObligation: {
+              required: true,
+            },
+            
         },
 
         errorPlacement: function(error, element) {
             $(element).parent('div').addClass('has-error');
          }
-	}); */
+	}); 
 
     // Wizard Initialization
   	$('.wizard-card').bootstrapWizard({
@@ -44,8 +41,9 @@ $(document).ready(function(){
         'previousSelector': '.btn-previous',
 
         onNext: function(tab, navigation, index) {
-        	var $valid = $('.wizard-card form').valid();
-        	if(!$valid) {
+        	var $validator = $('.wizard-card form').valid();
+            //console.log('XXXXXXXXXXXX',$validator);
+        	if(!$validator) {
         		$validator.focusInvalid();
         		return false;
         	}

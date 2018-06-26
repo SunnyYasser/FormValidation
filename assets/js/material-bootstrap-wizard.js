@@ -1,5 +1,7 @@
 // Material Bootstrap Wizard Functions
 
+
+
 var searchVisible = 0;
 var transparent = true;
 var mobile_device = false;
@@ -11,22 +13,111 @@ $(document).ready(function(){
     /*  Activate the tooltips      */
     $('[rel="tooltip"]').tooltip();
 
+    $.validator.addMethod("checkNumeric",function(value,element){
+        console.log(value,"***************",element);
+        var num=parseInt(value,10);
+        console.log((num<0));
+        return (!(isNaN(num))||(num>0));
+    },"Please enter correct value(s)");
+
     // Code for the Validator
      var $validator = $('.wizard-card form').validate({
 		  rules: {
 		    txtLoanAmount: {
 		      required: true,
+              checkNumeric:true,
+              success:"Valid",
 		    },
 		    txtLoanTenure: {
 		      required: true,
+              checkNumeric: true,
 		    },
             loanPurpose: {
               required: true,
             },
             MonthlyObligation: {
               required: true,
+              checkNumeric:true,
+            },
+            MobileNo:{
+                required:true,
+                minlength:10,
+                checkNumeric:true,
+            },
+                
+            PersonalEmailID: {
+                required:true,
+                email:true,
+            },
+
+            FName:{
+                required:true,
+            },
+            PAN:{
+                minlength:10,
+                required:true,
+            },
+            AadhaarNumber:{
+                minlength:16,
+                required:true,
+            },
+            Gender:{
+                required:true,
             },
             
+            DOB:{
+                required:true,
+            },
+            CurrentWorkExp:{
+                required:true,
+            },
+            TotalWorkExp:{
+                required:true,
+            },
+            CurrentAddress1:{
+                required:true,
+            },
+            CurrentPin:{
+                required:true,
+            },
+            CurrentCity:{
+                required:true,
+            },
+            CurrentState:{
+                required:true,
+            },
+            PermanentAddress1:{
+                required:true,
+            },
+            PermanentPin:{
+                required:true,
+            },
+            PermanentCity:{
+                required:true,
+            },
+            PermanentState:{
+                required:true,
+            },
+            ResidenceType:{
+                required:true,
+            },
+            ResidenceStability:{
+                required:true,
+            },
+            Education:{
+                required:true,
+            },
+            MaritalStatus:{
+                required:true,
+            },
+
+
+          
+        },
+        messages: {
+            txtLoanAmount:{
+                checkNumeric:"Enter valid value(s)"
+            },
         },
 
         errorPlacement: function(error, element) {
@@ -41,11 +132,12 @@ $(document).ready(function(){
         'previousSelector': '.btn-previous',
 
         onNext: function(tab, navigation, index) {
-        	var $validator = $('.wizard-card form').valid();
-            //console.log('XXXXXXXXXXXX',$validator);
-        	if(!$validator) {
+        	var $valid = $('.wizard-card form').valid();
+            //console.log('XXXXXXXXXXXX',$valid);
+        	if(!$valid) {
         		$validator.focusInvalid();
-        		return false;
+        		//console.log('YYYYYYYYYYY');
+                return false;
         	}
         },
 

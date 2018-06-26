@@ -20,13 +20,21 @@ $(document).ready(function(){
         return (!(isNaN(num))||(num>0));
     },"Please enter correct value(s)");
 
+    $.validator.addMethod("checkAlphabetOnly",function(value,element){
+        console.log(value,"***************",element);
+        return (/^[a-zA-Z]+$/.test(value));
+    },"Please enter correct value(s)");
+
+
+
+
+
     // Code for the Validator
      var $validator = $('.wizard-card form').validate({
 		  rules: {
 		    txtLoanAmount: {
 		      required: true,
               checkNumeric:true,
-              success:"Valid",
 		    },
 		    txtLoanTenure: {
 		      required: true,
@@ -52,6 +60,7 @@ $(document).ready(function(){
 
             FName:{
                 required:true,
+                checkAlphabetOnly:true,
             },
             PAN:{
                 minlength:10,
@@ -70,39 +79,49 @@ $(document).ready(function(){
             },
             CurrentWorkExp:{
                 required:true,
+                checkNumeric:true,
             },
             TotalWorkExp:{
                 required:true,
+                checkNumeric:true,
             },
             CurrentAddress1:{
                 required:true,
             },
             CurrentPin:{
                 required:true,
+                checkNumeric:true,
+                minlength:6,
             },
             CurrentCity:{
                 required:true,
+                checkAlphabetOnly:true,
             },
             CurrentState:{
                 required:true,
+                checkAlphabetOnly:true,
             },
             PermanentAddress1:{
                 required:true,
             },
             PermanentPin:{
                 required:true,
+                checkNumeric:true,
             },
             PermanentCity:{
                 required:true,
+                checkAlphabetOnly:true,
             },
             PermanentState:{
                 required:true,
+                checkAlphabetOnly:true,
             },
             ResidenceType:{
                 required:true,
             },
             ResidenceStability:{
                 required:true,
+                checkNumeric:true,
             },
             Education:{
                 required:true,
@@ -110,6 +129,9 @@ $(document).ready(function(){
             MaritalStatus:{
                 required:true,
             },
+            AlternateMobileNo:{
+                checkNumeric:true,
+            }
 
 
           

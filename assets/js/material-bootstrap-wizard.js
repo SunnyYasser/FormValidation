@@ -14,16 +14,37 @@ $(document).ready(function(){
     $('[rel="tooltip"]').tooltip();
 
     $.validator.addMethod("checkNumeric",function(value,element){
-        console.log(value,"***************",element);
         var num=parseInt(value,10);
-        console.log((num<0));
-        return (!(isNaN(num))||(num>0));
-    },"Please enter correct value(s)");
+        if(!(isNaN(num))||(num>0)){
+            return true;
+        }
+        else{
+            alert("Please enter correct value(s)");
+            return false;
+        }
+    });
 
     $.validator.addMethod("checkAlphabetOnly",function(value,element){
-        console.log(value,"***************",element);
-        return (/^[a-zA-Z]+$/.test(value));
-    },"Please enter correct value(s)");
+       // console.log(value,"***************",element);
+        if(/^[a-zA-Z]+$/.test(value)){
+            return true;
+        }
+        else{
+            var $label = $("label[for='"+$(element).attr('id')+"']")
+            alert($label+"Must contain only alphabets");
+            return false;}
+    });
+    $.validator.addMethod("checkPAN",function(value,element){
+        var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+        if(regpan.test(value)&&value.length==10){
+            return true;
+        }
+        else{
+            alert("Enter correct PAN number please");
+            return false;
+        }
+
+    })
 
 
 
@@ -62,8 +83,16 @@ $(document).ready(function(){
                 required:true,
                 checkAlphabetOnly:true,
             },
+            LName:{
+                checkAlphabetOnly:true,
+            },
+            MName:{
+                checkAlphabetOnly:true,
+
+            },
             PAN:{
                 minlength:10,
+                checkPAN:true,
                 required:true,
             },
             AadhaarNumber:{
@@ -87,6 +116,7 @@ $(document).ready(function(){
             },
             CurrentAddress1:{
                 required:true,
+                minlength:5,
             },
             CurrentPin:{
                 required:true,
@@ -96,13 +126,16 @@ $(document).ready(function(){
             CurrentCity:{
                 required:true,
                 checkAlphabetOnly:true,
+                minlength:2,
             },
             CurrentState:{
                 required:true,
                 checkAlphabetOnly:true,
+                minlength:2,
             },
             PermanentAddress1:{
                 required:true,
+                minlength:2,
             },
             PermanentPin:{
                 required:true,
@@ -131,6 +164,7 @@ $(document).ready(function(){
             },
             AlternateMobileNo:{
                 checkNumeric:true,
+                minlength:10,
             }
 
 

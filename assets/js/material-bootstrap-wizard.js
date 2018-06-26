@@ -1,7 +1,4 @@
 // Material Bootstrap Wizard Functions
-
-
-
 var searchVisible = 0;
 var transparent = true;
 var mobile_device = false;
@@ -9,30 +6,40 @@ var mobile_device = false;
 $(document).ready(function(){
 
     $.material.init();
-
     /*  Activate the tooltips      */
     $('[rel="tooltip"]').tooltip();
 
     $.validator.addMethod("checkNumeric",function(value,element){
         var num=parseInt(value,10);
-        if(!(isNaN(num))||(num>0)){
+        if((/^\d+$/.test(value))&&(num>0)){
             return true;
         }
         else{
-            alert("Please enter correct value(s)");
+           // //alert("Please enter correct value(s)");
             return false;
         }
-    });
+    },"Please enter correct value(s)");
 
+    $.validator.addMethod("checkAlphabetOnlyforName",function(value,element){
+       // console.log(value,"***************",element);
+        if(/^[a-zA-Z]+$/.test(value)){
+            return true;
+        }
+        else{
+            //var $label = $("label[for='"+$(element).attr('id')+"']")
+            //alert("Name must contain only alphabets");
+            return false;}
+    });
     $.validator.addMethod("checkAlphabetOnly",function(value,element){
        // console.log(value,"***************",element);
         if(/^[a-zA-Z]+$/.test(value)){
             return true;
         }
         else{
-            var $label = $("label[for='"+$(element).attr('id')+"']")
-            alert($label+"Must contain only alphabets");
-            return false;}
+            //var $label = $("label[for='"+$(element).attr('id')+"']")
+            //alert("Must contain only alphabets");
+            return false;
+        }
     });
     $.validator.addMethod("checkPAN",function(value,element){
         var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
@@ -40,11 +47,58 @@ $(document).ready(function(){
             return true;
         }
         else{
-            alert("Enter correct PAN number please");
+            //alert("Enter correct PAN number please");
             return false;
         }
 
-    })
+    });
+
+    $.validator.addMethod("checkContactNo",function(value,element){
+        if(!isNaN(value)&&value.length==10){
+            return true;
+        }
+        else{
+            //alert("Enter correct Contact Number please");
+            return false;
+        }
+
+    });
+    $.validator.addMethod("checkAddress",function(value,element){
+        var reg=/^[a-zA-Z0-9\s,.'-/\\\\]{3,}$/ ;
+
+        if(reg.test(value)&&value.length>10){
+            return true;
+        }
+        else{
+            //alert("Enter correct address please");
+            return false;
+        }
+
+    });
+    $.validator.addMethod("checkPIN",function(value,element){
+        var reg=/^[1-9][0-9]{5}$/ ;
+
+        if(reg.test(value)&&value.length==10){
+            return true;
+        }
+        else{
+            ////alert("Enter correct PIN please");
+            return false;
+        }
+
+    });
+    $.validator.addMethod("checkAadhar",function(value,element){
+        var reg=/^\d{4}\s\d{4}\s\d{4}$/ ;
+
+        if(reg.test(value)&&value.length==12){
+            return true;
+        }
+        else{
+           // //alert("Enter correct Aadhaar Number please");
+            return false;
+        }
+
+    });
 
 
 
@@ -70,8 +124,7 @@ $(document).ready(function(){
             },
             MobileNo:{
                 required:true,
-                minlength:10,
-                checkNumeric:true,
+                checkContactNo:true,
             },
                 
             PersonalEmailID: {
@@ -81,22 +134,21 @@ $(document).ready(function(){
 
             FName:{
                 required:true,
-                checkAlphabetOnly:true,
+                checkAlphabetOnlyforName:true,
             },
             LName:{
-                checkAlphabetOnly:true,
+                checkAlphabetOnlyforName:true,
             },
             MName:{
-                checkAlphabetOnly:true,
+                checkAlphabetOnlyforName:true,
 
             },
             PAN:{
-                minlength:10,
                 checkPAN:true,
                 required:true,
             },
             AadhaarNumber:{
-                minlength:16,
+                checkAadhar:true,
                 required:true,
             },
             Gender:{
@@ -116,12 +168,12 @@ $(document).ready(function(){
             },
             CurrentAddress1:{
                 required:true,
-                minlength:5,
+                checkAddress:true,
             },
             CurrentPin:{
                 required:true,
                 checkNumeric:true,
-                minlength:6,
+                
             },
             CurrentCity:{
                 required:true,
@@ -135,7 +187,7 @@ $(document).ready(function(){
             },
             PermanentAddress1:{
                 required:true,
-                minlength:2,
+                checkAddress:true,
             },
             PermanentPin:{
                 required:true,
@@ -163,9 +215,8 @@ $(document).ready(function(){
                 required:true,
             },
             AlternateMobileNo:{
-                checkNumeric:true,
-                minlength:10,
-            }
+                checkContactNo:true,
+           }
 
 
           
@@ -178,6 +229,7 @@ $(document).ready(function(){
 
         errorPlacement: function(error, element) {
             $(element).parent('div').addClass('has-error');
+
          }
 	}); 
 
@@ -224,7 +276,7 @@ $(document).ready(function(){
         onTabShow: function(tab, navigation, index) {
             var $total = navigation.find('li').length;
             var $current = index+1;
-			//alert($current);
+			////alert($current);
             var $wizard = navigation.closest('.wizard-card');
 
             // If it's the last tab then hide the last button and show the finish instead

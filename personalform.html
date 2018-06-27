@@ -30,7 +30,14 @@
 	
 	<link href="assets/css/meds.css" rel="stylesheet" />
 	<link href="assets/css/custom.css" rel="stylesheet" />
-	
+	<script>
+		function copyAddress(f){
+				console.log(f.CurrentPin.value);
+				f.PermanentPin.value=f.CurrentPin.value;
+				console.log(f.PermanentPin.value);
+			
+		}
+	</script>
 		
 </head>
 
@@ -70,8 +77,8 @@
 											<i class="material-icons">panorama_fish_eye</i><span>Address</span></a></li>
 										<li><a href="#employmentDetails" data-toggle="tab">
 											<i class="material-icons">panorama_fish_eye</i><span>Employment Details</span></a></li>										
-										<li><a href="#collection" data-toggle="tab">
-											<i class="material-icons">panorama_fish_eye</i><span>Document Collection</span></a></li>
+										<!--<li><a href="#collection" data-toggle="tab">
+											<i class="material-icons">panorama_fish_eye</i><span>Document Collection</span></a></li>-->
 			                        </ul>
 								</div>
 								
@@ -85,7 +92,7 @@
 													</span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Loan Amount <i class="fa fa-rupee"></i></label>
-			                                          	<input name="txtLoanAmount" type="text" class="form-control" required="True">
+			                                          	<input name="AppliedLoanamount" type="text" class="form-control" required="True">
 														<span class="material-input" id="loanAmount"></span>
 													</div>
 												</div>
@@ -94,7 +101,7 @@
 													</span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Loan Tenure <small>(in Years)</small></label>
-			                                          	<input name="txtLoanTenure" type="text" class="form-control">
+			                                          	<input name="Tenure" type="text" class="form-control">
 
 														<span class="material-input" id="loanTenure"></span>
 													</div>
@@ -292,7 +299,7 @@
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
-														<label class="control-label">Residence Type</label>
+														<label class="control-label" name="PermanentResidenceType">Residence Type </label>
 			                                          	<select class="form-control" name="ResidenceType">
 															<option disabled="" selected=""></option>
 															<option value="rented">Rented</option>
@@ -301,8 +308,8 @@
 														</select>			
 														<span class="material-input"></span>
 														<div class="form-group label-floating is-empty">
-			                                          	<label class="control-label">Residence Stability</label>
-			                                          	<input name="ResidenceStability" type="int" class="form-control">
+			                                          	<label class="control-label">Residence Stability (in months)</label>
+			                                          	<input name="ResidenceStability" type="int" class="form-control" placeholder="">
 														<span class="material-input"></span>
 													</div>
 
@@ -314,8 +321,9 @@
 														
 													<div class="form-group ">
 														<h6><label class="control-label">Is Current & Permanent Address same ?</label></h6>
-														<div class="switch">													
-															<label>No<input type="checkbox" class="checkbox_check" id="chkAddress"><span class="lever switch-col-red"></span>Yes</label>
+														<div class="switch" ontoggle="copyAddress(this.form)" >											
+															<label>No<input type="checkbox" class="checkbox_check" id="chkAddress"><span class="lever switch-col-red"
+																name="switch_option" ontoggle="copyAddress(this.form)"></span>Yes</label>
 														</div>
 													</div>													
 												</div>
@@ -349,7 +357,7 @@
 													</div>	
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">Residence Type</label>
-			                                          	<select class="form-control" name="presidence">
+			                                          	<select class="form-control" name="PermanentResidenceType">
 															<option disabled="" selected=""></option>
 															<option value="rented">Rented</option>
 															<option value="owned">Owned</option>
@@ -369,12 +377,12 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Pin Code </label>
-			                                          	<input name="ctxtPincode" type="text" class="form-control">
+			                                          	<input name="CompanyPin" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">Address</label>
-			                                          	<input name="caddress" type="text" class="form-control">
+			                                          	<input name="CompanyAddress" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>
 													<span class="input-group-addon"></span>	
@@ -383,12 +391,12 @@
 													<span class="input-group-addon"></span>
 													<div class="form-group label-floating is-empty">
 														<label class="control-label">City</label>
-			                                          	<input name="ccity" type="text" class="form-control">					
+			                                          	<input name="CompanyCity" type="text" class="form-control">					
 														<span class="material-input"></span>
 													</div>	
 													<div class="form-group label-floating is-empty">
 			                                          	<label class="control-label">State</label>
-			                                          	<input name="cstate" type="text" class="form-control">
+			                                          	<input name="CompanyState" type="text" class="form-control">
 														<span class="material-input"></span>
 													</div>	
 																									
@@ -425,8 +433,12 @@
 															<input name="txtMonthlySalary" type="text" class="form-control">
 														<span class="material-input"></span></div>
 														<div class="form-group label-floating is-empty">
+															<label  class="control-label">Avg Bank Balance</label>
+															<input name="AvgBankBalance" type="text"  class="form-control validate">
+														<span class="material-input"></span></div>
+														<div class="form-group label-floating is-empty">
 															<label data-error="wrong" class="control-label">Official Email</label>
-															<input name="officeEmail" type="OfficialEmailID"  class="form-control validate">
+															<input name="OfficeEmailID" type="email"  class="form-control validate">
 														<span class="material-input"></span></div>
 													</div>								
 												</div>	
@@ -435,11 +447,11 @@
 													<div class="input-group">
 														<span class="input-group-addon"></span>
 														<div class="form-group label-floating is-empty">														
-															<label class="control-label">Current Work Experience</label>
+															<label class="control-label">Current Work Experience (in months)</label>
 															<input name="CurrentWorkExp" type="text" class="form-control">
 														<span class="material-input"></span></div>
 														<div class="form-group label-floating is-empty">														
-															<label class="control-label">Total Work Experience</label>
+															<label class="control-label">Total Work Experience (in months)</label>
 															<input name="TotalWorkExp" type="text" class="form-control">
 														<span class="material-input"></span></div>
 													</div>																								
@@ -448,7 +460,7 @@
 		                                </div>
 										<div class="wizard-footer">
 											<div class="pull-right verti">
-												<input type='button' class='btn btn-next btn-fill btn-wd btn-info' name='next4' value='Confirm Employment Details' onsubmit="return validate_employment()" />
+												<input type='button' class='btn btn-last btn-fill btn-wd btn-info' name='next4' value='Confirm Employment Details' href='#' />
 											</div>
 											<div class="pull-right verti">
 												<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Back' style="display:block;"/>
@@ -457,7 +469,7 @@
 										</div>
 		                            </div>
 									
-									<div class="tab-pane" id="collection">
+								<!--	<div class="tab-pane" id="collection">
 		                               <div class="row">											
 											<div class="col-sm-12">
 											<div><h5>Upload ID Proof Documents</h5></div>
@@ -724,193 +736,10 @@
 											</div>
 											<div class="pull-right verti">
 												<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Back' style="display:block;"  id="cancel-confirm-date"/>
-											</div>
+											</div>-->
 											<div class="clearfix"></div>
 										</div>
-										<div class="pres-details">
-										<div class="row">
-											<div class="col-sm-12">
-												<div><h5>Details of Prescription</h5></div>											
-												<div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">&nbsp;</i>
-													</span>
-													<div class="form-group label-floating is-empty">
-			                                          	<label class="control-label">Enter prescription ID (if applicable)</label>
-			                                          	<input name="name2" type="text" class="form-control">
-			                                        <span class="material-input"></span></div>
-												</div>
-												<div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">&nbsp;</i>
-													</span>
-													<div>
-														<p class="description">One refill request for each prescription only.<br>
-														Sean both sides of your prescription (.JPG, .PNG, .PDF formats)</p>
-														<p class="description">You can add upto three sets (front & back) of images per refill request.</p>
-													</div>
-												</div>
-		                                	</div>
-											<div class="col-sm-12">
-												<div><h5>Medication 1</h5></div>	
-		                                        <div class="col-sm-4 col-sm-offset-2">
-		                                            <div class="choice" data-toggle="wizard-radio">
-														<ul class="header-dropdown m-r--5">
-															<li class="dropdown">
-																<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-																	<i class="material-icons">more_vert</i>
-																</a>
-																<ul class="dropdown-menu pull-right verti">
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Retake</a></li>
-																</ul>
-															</li>
-														</ul>														
-														<div class="picture-container">
-															<div class="picture">
-																<img src="assets/img/Icons.png" class="picture-src" id="wizardPicturePreview1" title="">
-																<input type="file" id="wizard-picture-1" class="wizard-picture" data-id="1">
-															</div>
-															<h5>Front Page</h5>
-														</div>													
-		                                            </div>
-		                                        </div>
-		                                        <div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio">
-														<ul class="header-dropdown m-r--5">
-															<li class="dropdown">
-																<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-																	<i class="material-icons">more_vert</i>
-																</a>
-																<ul class="dropdown-menu pull-right verti">
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Retake</a></li>
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Remove</a></li>
-																</ul>
-															</li>
-														</ul>
-														<div style="opacity: 0.4;">
-															<input type="radio" name="type" value="Appartment">
-															<img src="assets/img/Icons.png">
-															<img src="assets/img/button_close-128.png" style="position: absolute; margin-left: -127px;opacity: 0.9;">
-															<h5>Back Page</h5>
-														</div>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-											<div class="col-sm-12">
-												<div><h5>Medication 2</h5></div>	
-		                                        <div class="col-sm-4 col-sm-offset-2">
-		                                            <div class="choice" data-toggle="wizard-radio" >
-														<ul class="header-dropdown m-r--5">
-															<li class="dropdown">
-																<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-																	<i class="material-icons">more_vert</i>
-																</a>
-																<ul class="dropdown-menu pull-right verti">
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Retake</a></li>
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Remove</a></li>
-																</ul>
-															</li>
-														</ul>
-														
-														<div class="picture-container">
-															<div class="picture">
-																<img src="assets/img/Icons.png" class="picture-src" id="wizardPicturePreview2" title="">
-																<input type="file" id="wizard-picture-2" class="wizard-picture" data-id="2">
-															</div>
-															<h5>Front Page</h5>
-														</div>
-		                                            </div>
-		                                        </div>
-		                                        <div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio">
-														<ul class="header-dropdown m-r--5">
-															<li class="dropdown">
-																<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-																	<i class="material-icons">more_vert</i>
-																</a>
-																<ul class="dropdown-menu pull-right verti">
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Retake</a></li>
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Remove</a></li>
-																</ul>
-															</li>
-														</ul>
-														<div class="picture-container">
-															<div class="picture">
-																<img src="assets/img/Icons.png" class="picture-src" id="wizardPicturePreview3" title="">
-																<input type="file" id="wizard-picture-3" class="wizard-picture" data-id="3">
-															</div>
-															<h5>Back Page</h5>
-														</div>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-											<div class="col-sm-12">
-												<div><h5>Medication 3</h5></div>	
-		                                        <div class="col-sm-4 col-sm-offset-2">
-		                                            <div class="choice" data-toggle="wizard-radio">
-														<ul class="header-dropdown m-r--5">
-															<li class="dropdown">
-																<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-																	<i class="material-icons">more_vert</i>
-																</a>
-																<ul class="dropdown-menu pull-right verti">
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Retake</a></li>
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Remove</a></li>
-																</ul>
-															</li>
-														</ul>
-														
-														<div class="picture-container">
-															<div class="picture">
-																<img src="assets/img/Icons.png" class="picture-src" id="wizardPicturePreview4" title="">
-																<input type="file" id="wizard-picture-4" class="wizard-picture" data-id="4">
-															</div>
-															<h5>Front Page</h5>
-														</div>
-		                                            </div>
-		                                        </div>
-		                                        <div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio">
-														<ul class="header-dropdown m-r--5">
-															<li class="dropdown">
-																<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-																	<i class="material-icons">more_vert</i>
-																</a>
-																<ul class="dropdown-menu pull-right verti">
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Retake</a></li>
-																	<li><a href="javascript:void(0);" class=" waves-effect waves-block">Remove</a></li>
-																</ul>
-															</li>
-														</ul>
-														<div style="opacity: 0.4;">
-															<input type="radio" name="type" value="Appartment">
-															<img src="assets/img/Icons.png">
-															<h5>Back Page</h5>
-														</div>
-		                                            </div>
-		                                        </div>												
-		                                    </div>
-											<div class="col-sm-12">
-												<div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">&nbsp;</i>
-													</span>
-														<p class="description" style="margin-top: 20px; color:#f44336; font-weight:500;">Complete this order before creating another for additional medication if required.</p>
-												</div>
-											</div>
-		                            	</div>
-										<div class="wizard-footer">
-											<div class="pull-right verti">
-												
-												<a href="order-summary.html" class='btn btn-fill btn-wd btn-info' name='next' value='REFILL'>Review Application Summary</a>
-											</div>
-											<div class="pull-right verti">
-												<input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Back' style="display:block;"/>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-										</div>
-		                            </div>
+									</div>
 		                            
 							   </div>
 		                    </form>
@@ -937,7 +766,7 @@
                                 <li role="presentation" class=""><a href="#polyclinics" data-toggle="tab" aria-expanded="false">POLYCLINICS</a></li>
                             </ul>
                             <!-- Tab panes -->
-                            <div class="tab-content facility">
+                            <!--<div class="tab-content facility">
                                 <div role="tabpanel" class="tab-pane fade active in" id="hospitals">
                                     <div class="list-group">
 										<a href="javascript:void(0);" class="list-group-item">Outram Polyclinic (Singhealth)</a>
@@ -956,7 +785,7 @@
 										<a href="javascript:void(0);" class="list-group-item">Tampines Hospital (Singhealth)</a>
 									</div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 

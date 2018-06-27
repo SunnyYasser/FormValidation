@@ -30,9 +30,35 @@ $(document).ready(function(){
             //alert("Name must contain only alphabets");
             return false;}
     });
+    $.validator.addMethod("checkDecimal",function(value,element){
+       // console.log(value,"***************",element);
+        if(/^\d+(\.\d{1,2})?$/.test(value)){
+            return true;
+        }
+        else{
+            //var $label = $("label[for='"+$(element).attr('id')+"']")
+            //alert("Name must contain only alphabets");
+            return false;}
+    });
     $.validator.addMethod("checkAlphabetOnly",function(value,element){
        // console.log(value,"***************",element);
         if(/^[a-zA-Z]+$/.test(value)){
+            return true;
+        }
+        else{
+            //var $label = $("label[for='"+$(element).attr('id')+"']")
+            //alert("Must contain only alphabets");
+            return false;
+        }
+    });
+    $.validator.addMethod("checkMorLname",function(value,element){
+       // console.log(value,"***************",element);
+        if (/^$/.test(value)){
+            console.log("**");
+            return true;
+
+        }
+        else if(/^[a-zA-Z]+$/.test(value)){
             return true;
         }
         else{
@@ -54,7 +80,10 @@ $(document).ready(function(){
     });
 
     $.validator.addMethod("checkContactNo",function(value,element){
-        if(!isNaN(value)&&value.length==10){
+        if (/^$/.test(value)){
+            return true;
+        }
+        else if((/^\d{10}$/.test(value))){
             return true;
         }
         else{
@@ -88,7 +117,7 @@ $(document).ready(function(){
 
     });
     $.validator.addMethod("checkAadhar",function(value,element){
-        var reg=/^\d{4}\s\d{4}\s\d{4}$/ ;
+        var reg=/^\d{12}$/ ;
 
         if(reg.test(value)&&value.length==12){
             return true;
@@ -106,12 +135,12 @@ $(document).ready(function(){
 
     // Code for the Validator
      var $validator = $('.wizard-card form').validate({
-		  rules: {
-		    txtLoanAmount: {
+		rules: {
+		    AppliedLoanamount: {
 		      required: true,
               checkNumeric:true,
 		    },
-		    txtLoanTenure: {
+		    Tenure: {
 		      required: true,
               checkNumeric: true,
 		    },
@@ -134,13 +163,13 @@ $(document).ready(function(){
 
             FName:{
                 required:true,
-                checkAlphabetOnlyforName:true,
+                checkMorLname:true,
             },
             LName:{
-                checkAlphabetOnlyforName:true,
+                checkMorLname:true,
             },
             MName:{
-                checkAlphabetOnlyforName:true,
+                checkMorLname:true,
 
             },
             PAN:{
@@ -161,10 +190,12 @@ $(document).ready(function(){
             CurrentWorkExp:{
                 required:true,
                 checkNumeric:true,
+                checkDecimal:true,
             },
             TotalWorkExp:{
                 required:true,
                 checkNumeric:true,
+                checkDecimal:true,
             },
             CurrentAddress1:{
                 required:true,
@@ -216,10 +247,40 @@ $(document).ready(function(){
             },
             AlternateMobileNo:{
                 checkContactNo:true,
-           }
-
-
-          
+            },
+            AvgBankBalance:{
+                required:true,
+                checkDecimal:true,
+            },
+            CompanyState:{
+                checkAlphabetOnly:true,
+                required:true,
+            },
+            CompanyPin:{
+                checkPIN:true,
+                required:true,
+            },
+            CompanyAddress:{
+                required:true,
+                checkAddress:true,
+            },
+            ComapanyCity:{
+                required:true,
+            },
+            OfficeEmailID:{
+                required:true,
+            },
+            PermanentAddress:{
+                checkAddress:true,
+            },
+            PermanentResidenceType:{
+                required:true,
+            },
+            CompanyCity:{
+                required:true,
+                checkAlphabetOnly:true,
+            }
+        
         },
         messages: {
             txtLoanAmount:{

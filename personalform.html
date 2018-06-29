@@ -31,6 +31,8 @@
 	<link href="assets/css/meds.css" rel="stylesheet" />
 	<link href="assets/css/custom.css" rel="stylesheet" />
 	<script type="text/javascript">
+		
+
 		function setCaretPosition(ctrl, pos) {
   			// Modern browsers
 		 if (ctrl.setSelectionRange) {
@@ -54,7 +56,20 @@
 			var res2 = document.getElementById("CurrentAddress1").value;
 			var res3 = document.getElementById("CurrentCity").value;
 			var res4 = document.getElementById("CurrentState").value;
-			var res5 = document.getElementById("ResidenceType").value;
+
+			if(same_addr){
+				document.getElementById("PermanentPin").value = res1;
+				document.getElementById("PermanentAddress").value = res2;
+				document.getElementById("PermanentCity").value = res3;
+				document.getElementById("PermanentState").value = res4;
+				
+			}else{
+				document.getElementById("PermanentPin").value = '';
+				document.getElementById("PermanentAddress").value = '';
+				document.getElementById("PermanentCity").value = '';
+				document.getElementById("PermanentState").value = '';
+		
+			}
 
 			var input = document.getElementById('PermanentPin');
 			setCaretPosition(input, input.value.length);
@@ -64,20 +79,7 @@
 			setCaretPosition(input, input.value.length);
 			var input = document.getElementById('PermanentState');
 			setCaretPosition(input, input.value.length);
-
-			if(same_addr){
-				document.getElementById("PermanentPin").value = res1;
-				document.getElementById("PermanentAddress").value = res2;
-				document.getElementById("PermanentCity").value = res3;
-				document.getElementById("PermanentState").value = res4;
-				document.getElementById("presidence").value = res5;
-			}else{
-				document.getElementById("PermanentPin").value = '';
-				document.getElementById("PermanentAddress").value = '';
-				document.getElementById("PermanentCity").value = '';
-				document.getElementById("PermanentState").value = '';
-				document.getElementById("presidence").value = '';
-			}
+			
 		}
 
 

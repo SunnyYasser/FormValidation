@@ -42,7 +42,7 @@ $(document).ready(function(){
     });
     $.validator.addMethod("checkAlphabetOnly",function(value,element){
        // console.log(value,"***************",element);
-        if(/^[a-zA-Z]+$/.test(value)){
+        if(/^[a-zA-Z\s]+$/.test(value)){
             return true;
         }
         else{
@@ -107,7 +107,7 @@ $(document).ready(function(){
     $.validator.addMethod("checkPIN",function(value,element){
         var reg=/^[1-9][0-9]{5}$/ ;
 
-        if(reg.test(value)&&value.length==10){
+        if(reg.test(value)&&value.length==6){
             return true;
         }
         else{
@@ -140,7 +140,7 @@ $(document).ready(function(){
 		      required: true,
               checkNumeric:true,
 		    },
-		    Tenure: {
+		  Tenure: {
 		      required: true,
               checkNumeric: true,
 		    },
@@ -173,12 +173,12 @@ $(document).ready(function(){
 
             },
             PAN:{
-                checkPAN:true,
                 required:true,
+                checkPAN:true,
             },
             AadhaarNumber:{
-                checkAadhar:true,
                 required:true,
+                checkAadhar:true,
             },
             Gender:{
                 required:true,
@@ -203,7 +203,7 @@ $(document).ready(function(){
             },
             CurrentPin:{
                 required:true,
-                checkNumeric:true,
+                checkPIN:true,
                 
             },
             CurrentCity:{
@@ -222,7 +222,7 @@ $(document).ready(function(){
             },
             PermanentPin:{
                 required:true,
-                checkNumeric:true,
+                checkPIN:true,
             },
             PermanentCity:{
                 required:true,
@@ -253,12 +253,12 @@ $(document).ready(function(){
                 checkDecimal:true,
             },
             CompanyState:{
-                checkAlphabetOnly:true,
                 required:true,
+                checkAlphabetOnly:true,
             },
             CompanyPin:{
-                checkPIN:true,
                 required:true,
+                checkPIN:true,
             },
             CompanyAddress:{
                 required:true,

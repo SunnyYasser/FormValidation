@@ -31,6 +31,8 @@
 	<link href="assets/css/meds.css" rel="stylesheet" />
 	<link href="assets/css/custom.css" rel="stylesheet" />
 	<script type="text/javascript">
+		
+
 		function setCaretPosition(ctrl, pos) {
   			// Modern browsers
 		 if (ctrl.setSelectionRange) {
@@ -54,7 +56,28 @@
 			var res2 = document.getElementById("CurrentAddress1").value;
 			var res3 = document.getElementById("CurrentCity").value;
 			var res4 = document.getElementById("CurrentState").value;
-			var res5 = document.getElementById("ResidenceType").value;
+
+			if(same_addr){
+				document.getElementById("PermanentPin").value = res1;
+				document.getElementById("PermanentAddress").value = res2;
+				document.getElementById("PermanentCity").value = res3;
+				document.getElementById("PermanentState").value = res4;
+<<<<<<< HEAD
+				document.getElementById("PermanentResidenceType").value = res5;
+=======
+				
+>>>>>>> 9f279343304f4fc4d62733edbf8d3720518cf691
+			}else{
+				document.getElementById("PermanentPin").value = '';
+				document.getElementById("PermanentAddress").value = '';
+				document.getElementById("PermanentCity").value = '';
+				document.getElementById("PermanentState").value = '';
+<<<<<<< HEAD
+				document.getElementById("PermanentResidenceType").value = '';
+=======
+		
+>>>>>>> 9f279343304f4fc4d62733edbf8d3720518cf691
+			}
 
 			var input = document.getElementById('PermanentPin');
 			setCaretPosition(input, input.value.length);
@@ -64,20 +87,7 @@
 			setCaretPosition(input, input.value.length);
 			var input = document.getElementById('PermanentState');
 			setCaretPosition(input, input.value.length);
-
-			if(same_addr){
-				document.getElementById("PermanentPin").value = res1;
-				document.getElementById("PermanentAddress").value = res2;
-				document.getElementById("PermanentCity").value = res3;
-				document.getElementById("PermanentState").value = res4;
-				document.getElementById("PermanentResidenceType").value = res5;
-			}else{
-				document.getElementById("PermanentPin").value = '';
-				document.getElementById("PermanentAddress").value = '';
-				document.getElementById("PermanentCity").value = '';
-				document.getElementById("PermanentState").value = '';
-				document.getElementById("PermanentResidenceType").value = '';
-			}
+			
 		}
 
 
